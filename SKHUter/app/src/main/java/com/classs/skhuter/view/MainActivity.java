@@ -20,11 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setOnMenuItemClickListener(menuItemClickListener);
-        ivLogo = (ImageView) findViewById(R.id.toolbar_logo_iv);
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
     }
