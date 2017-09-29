@@ -12,7 +12,7 @@ import com.classs.skhuter.R;
 public class LoginFormActivity extends Activity {
 
     Button btnLogin;
-    TextView textRegist;
+    TextView textRegist, textFindPW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,17 @@ public class LoginFormActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginFormActivity.this, RegistActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        textFindPW = (TextView) findViewById(R.id.textFindPW);
+
+        textFindPW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginFormActivity.this, FindPwActivity.class);
                 startActivity(intent);
                 finish();
             }

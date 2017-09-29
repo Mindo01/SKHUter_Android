@@ -80,12 +80,37 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="/"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="회원가입 하러 가기"
-        android:id="@+id/textRegist"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:textIsSelectable="true"
+        android:layout_marginEnd="18dp"
+        android:id="@+id/textView5"
+        android:layout_alignBaseline="@+id/textRegist"
+        android:layout_alignBottom="@+id/textRegist"
+        android:layout_toStartOf="@+id/chkIsAutoLogin" />
+
+    <TextView
+        android:id="@+id/textFindPW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 찾기"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#3587a0"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignEnd="@+id/btnLogin" />
+
+    <TextView
+        android:id="@+id/textRegist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="회원가입"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#3587a0"
+        android:textIsSelectable="true"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignStart="@+id/btnLogin" />
 
 </RelativeLayout>
