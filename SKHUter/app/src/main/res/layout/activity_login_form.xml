@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="회원가입 하러 가기"
-        android:id="@+id/textView"
+        android:id="@+id/textRegist"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textColor="#3587a0"

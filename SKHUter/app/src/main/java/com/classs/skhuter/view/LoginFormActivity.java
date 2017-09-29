@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.classs.skhuter.R;
 
 public class LoginFormActivity extends Activity {
 
     Button btnLogin;
+    TextView textRegist;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,17 @@ public class LoginFormActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginFormActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        textRegist = (TextView) findViewById(R.id.textRegist);
+
+        textRegist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginFormActivity.this, RegistActivity.class);
                 startActivity(intent);
                 finish();
             }
