@@ -35,9 +35,10 @@ public class LoginFormActivity extends Activity {
         textRegist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginFormActivity.this, RegistActivity.class);
-                startActivity(intent);
-                finish();
+                //액티비티 커밋이 안되어있음 일단 주석처리
+                //Intent intent = new Intent(LoginFormActivity.this, RegistActivity.class);
+                //startActivity(intent);
+                //finish();
             }
         });
 
@@ -46,9 +47,10 @@ public class LoginFormActivity extends Activity {
         textFindPW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginFormActivity.this, FindPwActivity.class);
-                startActivity(intent);
-                finish();
+                //액티비티 커밋이 안되어있음 일단 주석처리
+                //Intent intent = new Intent(LoginFormActivity.this, FindPwActivity.class);
+                //startActivity(intent);
+                //finish();
             }
         });
 

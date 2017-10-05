@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_user_list"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="학생 목록" />
+        <item android:title="학생회">
+            <menu>
+                <item
+                    android:id="@+id/nav_schedule"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="학생회 일정" />
+                <item
+                    android:id="@+id/nav_meeting_note"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="회의록" />
+            </menu>
+        </item>
+        <item android:title="공지사항">
+            <menu>
+                <item
+                    android:id="@+id/nav_notice"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="공지사항" />
+                <item
+                    android:id="@+id/nav_stu_schedule"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="학사 일정" />
+                <item
+                    android:id="@+id/nav_account"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="회계 내역" />
+                <item
+                    android:id="@+id/nav_vote"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="투표" />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/nav_board"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="익명 게시판" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="로그아웃" />
+    </group>
+
+
+
+</menu>
