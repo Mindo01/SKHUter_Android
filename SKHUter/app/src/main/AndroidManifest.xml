@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.LoginFormActivity" />
+        <activity android:name=".view.FindPwActivity" />
+        <activity android:name=".view.RegistActivity" />
         <activity
             android:name=".view.MainActivity"
             android:label="@string/title_activity_main"

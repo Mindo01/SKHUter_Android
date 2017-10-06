@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 회원가입 스피너 아이템 -->
+<resources>
+    <string-array name="grade">
+        <item>1학년</item>
+        <item>2학년</item>
+        <item>3학년</item>
+        <item>4학년</item>
+    </string-array>
+
+    <string-array name="isLeave">
+        <item>재학</item>
+        <item>휴학</item>
+    </string-array>
+</resources>

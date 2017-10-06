@@ -36,9 +36,8 @@ public class LoginFormActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //액티비티 커밋이 안되어있음 일단 주석처리
-                //Intent intent = new Intent(LoginFormActivity.this, RegistActivity.class);
-                //startActivity(intent);
-                //finish();
+                Intent intent = new Intent(LoginFormActivity.this, RegistActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -48,9 +47,8 @@ public class LoginFormActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //액티비티 커밋이 안되어있음 일단 주석처리
-                //Intent intent = new Intent(LoginFormActivity.this, FindPwActivity.class);
-                //startActivity(intent);
-                //finish();
+                Intent intent = new Intent(LoginFormActivity.this, FindPwActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -1,10 +1,10 @@
 package com.classs.skhuter.view;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,13 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.classs.skhuter.R;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    Handler handler = new Handler();
+    Toast t;
+    private boolean notiVisiblity = false;
 
+    /// Fragment 변수들
+    FragmentManager fm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +38,14 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        fm = getSupportFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction tran = fm.beginTransaction();
+        tran.add(R.id.container, new HomeFragment());
+        tran.commit();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override
@@ -74,28 +76,88 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FragmentTransaction tran = fm.beginTransaction();
+        fm.popBackStack();
         if (id == R.id.nav_user_list) {
-
+            // 학생목록
+            tran.replace(R.id.container, new UserListFragment());
         } else if (id == R.id.nav_schedule) {
-
+            // 학생회일정
+            tran.replace(R.id.container, new ScheduleFragment());
         } else if (id == R.id.nav_meeting_note) {
-
+            // 회의록
+            tran.replace(R.id.container, new MeetingNoteFragment());
         } else if (id == R.id.nav_notice) {
-
+            // 공지사항
+            tran.replace(R.id.container, new NoticeFragment());
         } else if (id == R.id.nav_stu_schedule) {
-
+            // 학사일정
+            tran.replace(R.id.container, new StuScheduleFragment());
         } else if (id == R.id.nav_account) {
-
+            // 회계내역
+            tran.replace(R.id.container, new AccountFragment());
         } else if (id == R.id.nav_vote) {
-
+            // 투표목록
+            tran.replace(R.id.container, new VoteFragment());
         } else if (id == R.id.nav_board) {
-
+            // 익명게시판
+            tran.replace(R.id.container, new BoardFragment());
         } else if (id == R.id.nav_logout) {
+            // 로그아웃
+            // TODO 로그아웃 기능 실행
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+        //tran.addToBackStack(null);
+        tran.commit();
         return true;
+    }
+
+    /* 뒤로가기 시 실제 핸들링 처리 부분 */
+    Runnable backKeyRun = new Runnable() {
+        int count = 0;
+        @Override
+        public void run() {
+            if (count < 1) {
+                showToast("뒤로가기를 한번 더 누르시면 종료됩니다");
+                count++;
+            } else {
+                finish();
+            }
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    count = 0;
+                }
+            }, 2000);
+        }
+    };
+
+    /* 백키 눌렀을 때 처리사항들 => UX 적으로 매우 중요 ! 우선순위 파악필요. */
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
+        } else {
+            handler.post(backKeyRun);
+            if (!notiVisiblity) {
+                handler.post(backKeyRun);
+            } else {
+                //toggleFragment();
+            }
+        }
+    } // end of onBackPressed
+
+    public void showToast(String text) {
+        if (t != null) t.cancel();
+        t = Toast.makeText(getApplicationContext(),
+                text,
+                Toast.LENGTH_SHORT);
+        t.show();
     }
 }
