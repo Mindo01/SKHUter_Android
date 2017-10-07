@@ -5,8 +5,8 @@
     android:background="#fff">
     <ImageView
         android:id="@+id/ivNote"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="10dp"
         android:background="@drawable/meeting_note"/>
     <RelativeLayout
@@ -26,13 +26,13 @@
             android:layout_alignParentLeft="true"
             android:textStyle="bold"
             android:textColor="#222"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_marginBottom="3dp"
             android:text="회의록 제목"/>
 
         <TextView
             android:id="@+id/tvMeetingNoteWriter"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -45,8 +45,8 @@
 
     <ImageView
         android:id="@+id/ivDownload"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:background="@drawable/download"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

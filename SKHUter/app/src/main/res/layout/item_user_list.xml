@@ -26,13 +26,13 @@
             android:layout_alignParentLeft="true"
             android:textStyle="bold"
             android:textColor="#222"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_marginBottom="3dp"
             android:text="KimMinJu"/>
 
         <TextView
             android:id="@+id/tvUserGrade"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -49,7 +49,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:text="201334005"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 

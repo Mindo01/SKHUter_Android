@@ -27,13 +27,13 @@
             android:layout_alignParentLeft="true"
             android:textStyle="bold"
             android:textColor="#222"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_marginBottom="3dp"
             android:text="투표 제목"/>
 
         <TextView
             android:id="@+id/tvVoteDate"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -50,7 +50,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:text="13명 참여"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <ImageView
