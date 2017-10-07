@@ -1,11 +1,12 @@
 package com.classs.skhuter.domain;
+
 import java.util.Date;
 
 /**
  * 투표 관련 객체 선언 및 getter(), setter() 메소드 정의
  *
  * @패키지 : com.classs.skhuter.user.domain
- * @파일명 : UserDTO.java
+ * @파일명 : VoteDTO.java
  * @작성자 : 이종윤
  * @작성일 : 2017. 10. 07
  *
@@ -32,8 +33,15 @@ public class VoteDTO {
 	private int item5Count;
 	private int item6Count;
 	private int isVote;
+	private int joinCount;
 	
 	
+	public int getJoinCount() {
+		return joinCount;
+	}
+	public void setJoinCount(int joinCount) {
+		this.joinCount = joinCount;
+	}
 	public int getIsVote() {
 		return isVote;
 	}

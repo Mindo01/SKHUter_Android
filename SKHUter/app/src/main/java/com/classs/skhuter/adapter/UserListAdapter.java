@@ -19,7 +19,7 @@ import java.util.List;
  * 학생 목록 어댑터 - 리스트뷰
  *
  * @패키지 : com.classs.skhuter.adapter
- * @파일명 : UserDTO.java
+ * @파일명 : UserListAdapter.java
  * @작성자 : 김민주
  * @작성일 : 2017. 10. 06
  *

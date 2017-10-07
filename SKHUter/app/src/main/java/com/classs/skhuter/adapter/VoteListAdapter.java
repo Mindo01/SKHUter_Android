@@ -8,13 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.classs.skhuter.R;
-import com.classs.skhuter.domain.UserDTO;
+import com.classs.skhuter.domain.VoteDTO;
 
 import java.util.List;
 
 /**
- * 학생 목록 어댑터 - 리스트뷰
+ * 투표 목록 어댑터 - 리스트뷰
  *
  * @패키지 : com.classs.skhuter.adapter
  * @파일명 : VoteListAdapter.java
@@ -26,24 +27,24 @@ import java.util.List;
 public class VoteListAdapter extends BaseAdapter {
     Context context;
     int layout;
-    List<UserDTO> userDTOList;
+    List<VoteDTO> voteDTOList;
     LayoutInflater inflater;
 
-    public VoteListAdapter(Context context, int layout, List<UserDTO> restaList) {
+    public VoteListAdapter(Context context, int layout, List<VoteDTO> restaList) {
         this.context = context;
         this.layout = layout;
-        this.userDTOList = restaList;
+        this.voteDTOList = restaList;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     } // Constructor
 
     @Override
     public int getCount() {
-        return userDTOList.size();
+        return voteDTOList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return userDTOList.get(position);
+        return voteDTOList.get(position);
     }
 
     @Override
@@ -57,30 +58,33 @@ public class VoteListAdapter extends BaseAdapter {
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.item_user_list, parent, false);
+            convertView = inflater.inflate(R.layout.item_vote_list, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.ivProfile = (ImageView) convertView.findViewById(R.id.ivProfile);
-            viewHolder.tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
-            viewHolder.tvUserSSN = (TextView) convertView.findViewById(R.id.tvUserSSN);
-            viewHolder.tvUserGrade = (TextView) convertView.findViewById(R.id.tvUserGrade);
+            viewHolder.ivVoteIcon = (ImageView) convertView.findViewById(R.id.ivVoteIcon);
+            viewHolder.tvVoteName = (TextView) convertView.findViewById(R.id.tvVoteName);
+            viewHolder.tvVoteDate = (TextView) convertView.findViewById(R.id.tvVoteDate);
+            viewHolder.tvVoteCount = (TextView) convertView.findViewById(R.id.tvVoteCount);
+            viewHolder.ivVoteImg = (ImageView) convertView.findViewById(R.id.ivVoteImg);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        UserDTO user = (UserDTO) getItem(position);
-        //Glide.with(context).load("http://ldh66210.cafe24.com/upload/"+nBean.getImgPath()).thumbnail(0.1f).error(R.drawable.ic_group).into(viewHolder.ivNewsImg);
-        viewHolder.tvUserName.setText(user.getName());
-        viewHolder.tvUserSSN.setText(user.getId());
-        viewHolder.tvUserGrade.setText(user.getGrade() + "학년");
+        VoteDTO vote = (VoteDTO) getItem(position);
+        viewHolder.tvVoteName.setText(vote.getTitle());
+        viewHolder.tvVoteDate.setText(vote.getStartDate() + " ~ " + vote.getEndDate());
+        viewHolder.tvVoteCount.setText(vote.getJoinCount() + "명 참여");
+        Glide.with(context).load(R.drawable.end_vote).thumbnail(0.1f).error(R.drawable.none_vote).into(viewHolder.ivVoteImg);
+
         return convertView;
     }
 
     static class ViewHolder {
-        public ImageView ivProfile;
-        public TextView tvUserName;
-        public TextView tvUserSSN;
-        public TextView tvUserGrade;
+        public ImageView ivVoteIcon;
+        public TextView tvVoteName;
+        public TextView tvVoteDate;
+        public TextView tvVoteCount;
+        public ImageView ivVoteImg;
     } // end of inner class ViewHolder
 } // end of class
