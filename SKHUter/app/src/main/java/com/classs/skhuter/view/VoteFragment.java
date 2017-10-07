@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.classs.skhuter.R;
-import com.classs.skhuter.adapter.VoteListAdapter;
+import com.classs.skhuter.adapter.VoteAdapter;
 import com.classs.skhuter.domain.VoteDTO;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class VoteFragment extends Fragment {
 
     List<VoteDTO> voteDTOList = new ArrayList<VoteDTO>();
     ListView listView;
-    VoteListAdapter voteListAdapter;
+    VoteAdapter voteAdapter;
     public VoteFragment() {
         // Required empty public constructor
     }
@@ -48,10 +48,10 @@ public class VoteFragment extends Fragment {
 
         listView = (ListView) v.findViewById(R.id.lvVoteList);
         listView.setOnItemClickListener(mOnItemClickListener);
-        voteListAdapter = new VoteListAdapter(getActivity().getApplicationContext(),
-                R.layout.item_vote_list,
+        voteAdapter = new VoteAdapter(getActivity().getApplicationContext(),
+                R.layout.item_vote,
                 voteDTOList);
-        listView.setAdapter(voteListAdapter);
+        listView.setAdapter(voteAdapter);
 
         // Inflate the layout for this fragment
         return v;

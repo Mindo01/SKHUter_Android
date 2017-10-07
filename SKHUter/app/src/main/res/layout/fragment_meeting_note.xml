@@ -11,4 +11,9 @@
         android:layout_height="match_parent"
         android:text="회의록" />
 
+    <ListView
+        android:id="@+id/lvMeetingNoteList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </FrameLayout>
