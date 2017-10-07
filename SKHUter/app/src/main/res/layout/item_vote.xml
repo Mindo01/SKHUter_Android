@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+    <ImageView
+        android:id="@+id/ivVoteIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/vote_icon"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="13dp"
+        android:paddingRight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/ivVoteIcon">
+
+        <TextView
+            android:id="@+id/tvVoteName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textStyle="bold"
+            android:textColor="#222"
+            android:textSize="20dp"
+            android:layout_marginBottom="3dp"
+            android:text="투표 제목"/>
+
+        <TextView
+            android:id="@+id/tvVoteDate"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tvVoteName"
+            android:layout_marginTop="3dp"
+            android:textColor="#666"
+            android:text="2017-10-05 ~ 2017-10-07"/>
+
+        <TextView
+            android:id="@+id/tvVoteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvVoteDate"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="13명 참여"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ivVoteImg"
+        android:layout_width="60dp"
+        android:layout_height="15dp"
+        android:background="@drawable/done_vote"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="11dp"
+        android:layout_alignTop="@+id/ivVoteIcon"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cdcdcd"
+        android:layout_below="@+id/relativeLayout" />
+
+</RelativeLayout>

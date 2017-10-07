@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+    <ImageView
+        android:id="@+id/ivNote"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/meeting_note"/>
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/ivNote">
+
+        <TextView
+            android:id="@+id/tvMeetingNoteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textStyle="bold"
+            android:textColor="#222"
+            android:textSize="20dp"
+            android:layout_marginBottom="3dp"
+            android:text="회의록 제목"/>
+
+        <TextView
+            android:id="@+id/tvMeetingNoteWriter"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tvMeetingNoteTitle"
+            android:layout_marginTop="3dp"
+            android:textColor="#666"
+            android:text="작성자 : 이종윤"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ivDownload"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/download"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cdcdcd"
+        android:layout_below="@+id/relativeLayout" />
+
+</RelativeLayout>
