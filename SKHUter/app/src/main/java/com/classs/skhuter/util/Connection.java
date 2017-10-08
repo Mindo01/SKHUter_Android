@@ -15,4 +15,10 @@ public class Connection {
 
     // 학생 목록
     public static final String GET_USER_LIST = "/user/userListMobile";
+    // 회의록
+    public static final String GET_MEETING_NOTE = "/council/meetingNoteMobile";
+    // 회계 내역
+    public static final String GET_ACCOUNTING = "/notice/accountingListMobile";
+    // 투표
+    public static final String GET_VOTE_LIST = "/notice/VoteListMobile";
 }
