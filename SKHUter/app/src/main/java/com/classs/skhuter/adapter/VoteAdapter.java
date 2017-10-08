@@ -12,6 +12,9 @@ import com.bumptech.glide.Glide;
 import com.classs.skhuter.R;
 import com.classs.skhuter.domain.VoteDTO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,10 +33,10 @@ public class VoteAdapter extends BaseAdapter {
     List<VoteDTO> voteDTOList;
     LayoutInflater inflater;
 
-    public VoteAdapter(Context context, int layout, List<VoteDTO> restaList) {
+    public VoteAdapter(Context context, int layout, List<VoteDTO> voteDTOList) {
         this.context = context;
         this.layout = layout;
-        this.voteDTOList = restaList;
+        this.voteDTOList = voteDTOList;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     } // Constructor
 
@@ -75,7 +78,28 @@ public class VoteAdapter extends BaseAdapter {
         viewHolder.tvVoteName.setText(vote.getTitle());
         viewHolder.tvVoteDate.setText(vote.getStartDate() + " ~ " + vote.getEndDate());
         viewHolder.tvVoteCount.setText(vote.getJoinCount() + "명 참여");
-        Glide.with(context).load(R.drawable.end_vote).thumbnail(0.1f).error(R.drawable.none_vote).into(viewHolder.ivVoteImg);
+        int doingDrawable = R.drawable.none_vote;
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date startDate = null;
+        try {
+            startDate = transFormat.parse(vote.getStartDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (vote.getIsDone()) {
+            // 끝난 투표
+            doingDrawable = R.drawable.end_vote;
+        } else if (startDate != null && startDate.after(new Date())) {
+            // 아직 시작되지 않은 투표
+            doingDrawable = R.drawable.none_vote;
+        } else if (vote.getIsVote() < 1) {
+            // 아직 참여하지 않은 투표
+            doingDrawable = R.drawable.doing_vote;
+        } else {
+            // 이미 참여한 투표
+            doingDrawable = R.drawable.done_vote;
+        }
+        Glide.with(context).load(doingDrawable).thumbnail(0.1f).error(R.drawable.none_vote).into(viewHolder.ivVoteImg);
 
         return convertView;
     }

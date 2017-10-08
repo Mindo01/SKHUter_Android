@@ -4,10 +4,19 @@
     android:layout_height="match_parent"
     tools:context="com.classs.skhuter.view.VoteFragment"
     android:background="#FFFFFF">
-
-    <ListView
-        android:id="@+id/lvVoteList"
+    <TextView
+        android:id="@+id/tvError"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="네트워크 연결이 원활하지 않습니다"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lvVoteList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </FrameLayout>

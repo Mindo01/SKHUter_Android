@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.classs.skhuter.R;
+import com.classs.skhuter.util.Connection;
 
 public class LoginFormActivity extends Activity {
 
@@ -18,6 +19,12 @@ public class LoginFormActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_form);
+
+        //TODO 로그인 정보 임의로 설정
+        Connection.loginUser.setUserNo(1);
+        Connection.loginUser.setName("이종윤");
+        Connection.loginUser.setGrade(4);
+        Connection.loginUser.setId("201434025");
 
         btnLogin = (Button)findViewById(R.id.btnLogin);
 

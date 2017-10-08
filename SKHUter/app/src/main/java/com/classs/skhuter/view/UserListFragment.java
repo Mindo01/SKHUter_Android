@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -37,6 +38,7 @@ public class UserListFragment extends Fragment {
 
     List<UserDTO> userDTOList = new ArrayList<UserDTO>();
     ListView listView;
+    TextView tvError;
     UserListAdapter userListAdapter;
     Handler handler = new Handler();
     public UserListFragment() {
@@ -57,6 +59,7 @@ public class UserListFragment extends Fragment {
         getUserList();
 
         listView = (ListView) v.findViewById(R.id.lvUserList);
+        tvError = (TextView) v.findViewById(R.id.tvError);
         listView.setOnItemClickListener(mOnItemClickListener);
         userListAdapter = new UserListAdapter(getActivity().getApplicationContext(),
                 R.layout.item_user_list,
@@ -113,6 +116,7 @@ public class UserListFragment extends Fragment {
                     @Override
                     public void run() {
                         Log.d("MyLog", "error : " + err);
+                        tvError.setVisibility(View.VISIBLE);
                     }
                 });
             }

@@ -1,5 +1,7 @@
 package com.classs.skhuter.util;
 
+import com.classs.skhuter.domain.UserDTO;
+
 /**
  * Created by 김민도 on 2017-10-08.
  * @패키지 : com.classs.skhuter.util
@@ -10,6 +12,7 @@ package com.classs.skhuter.util;
  */
 
 public class Connection {
+    public static UserDTO loginUser = new UserDTO();
     // 내부 IP주소
     public static final String ADDRESS = "http://192.168.10.5";
 
@@ -20,5 +23,5 @@ public class Connection {
     // 회계 내역
     public static final String GET_ACCOUNTING = "/notice/accountingListMobile";
     // 투표
-    public static final String GET_VOTE_LIST = "/notice/VoteListMobile";
+    public static final String GET_VOTE_LIST = "/notice/voteListMobile";
 }

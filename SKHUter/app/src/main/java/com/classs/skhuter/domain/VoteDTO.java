@@ -35,6 +35,9 @@ public class VoteDTO implements Serializable {
 	private int item6Count;
 	private int isVote;
 	private int joinCount;
+
+	// 구분을 위한 변수 : DTO가 아님
+	private boolean isDone;
 	
 	
 	public int getJoinCount() {
@@ -166,6 +169,10 @@ public class VoteDTO implements Serializable {
 	public void setItem6(String item6) {
 		this.item6 = item6;
 	}
+
+	public boolean getIsDone() { return isDone; }
+	public void setIsDone(boolean isDone) { this.isDone = isDone; }
+
 	@Override
 	public String toString() {
 		return "VoteDTO [voteNo=" + voteNo + ", userNo=" + userNo + ", enrollDate=" + enrollDate + ", startDate="

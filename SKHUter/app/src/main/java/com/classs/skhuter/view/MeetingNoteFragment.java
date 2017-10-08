@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,6 +44,7 @@ public class MeetingNoteFragment extends Fragment {
 
     List<MeetingNoteDTO> meetingNoteDTOList = new ArrayList<MeetingNoteDTO>();
     ListView listView;
+    TextView tvError;
     MeetingNoteAdapter meetingNoteAdapter;
     Handler handler = new Handler();
     public MeetingNoteFragment() {
@@ -64,6 +66,8 @@ public class MeetingNoteFragment extends Fragment {
         getMeetingNote();
 
         listView = (ListView) v.findViewById(R.id.lvMeetingNoteList);
+        tvError = (TextView) v.findViewById(R.id.tvError);
+
         listView.setOnItemClickListener(mOnItemClickListener);
         meetingNoteAdapter = new MeetingNoteAdapter(getActivity().getApplicationContext(),
                 R.layout.item_meeting_note,
@@ -120,6 +124,7 @@ public class MeetingNoteFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 Log.d("MyLog", "error : " + error);
                 final VolleyError err = error;
 
@@ -127,6 +132,7 @@ public class MeetingNoteFragment extends Fragment {
                     @Override
                     public void run() {
                         Log.d("MyLog", "error : " + err);
+                        tvError.setVisibility(View.VISIBLE);
                     }
                 });
             }
