@@ -1,5 +1,7 @@
 package com.classs.skhuter.domain;
 
+import java.io.Serializable;
+
 /**
  * 회계 내역 관련 객체 선언 및 getter(), setter() 메소드 정의
  *
@@ -9,7 +11,7 @@ package com.classs.skhuter.domain;
  * @작성일 : 2017. 10. 08.
  *
  */
-public class AccountingDTO {
+public class AccountingDTO implements Serializable {
 	private int accountNo;
 	private int userNo;
 	private String accountDate;

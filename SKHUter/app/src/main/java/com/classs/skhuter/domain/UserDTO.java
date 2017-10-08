@@ -1,4 +1,5 @@
 package com.classs.skhuter.domain;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.sql.Date;
  * @작성일 : 2017. 10. 06
  *
  */
-public class UserDTO {
+public class UserDTO implements Serializable {
     private int userNo;
     private String id;
     private String password;

@@ -1,5 +1,6 @@
 package com.classs.skhuter.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,8 +12,8 @@ import java.util.Date;
  * @작성일 : 2017. 10. 07
  *
  */
-public class VoteDTO {
-	
+public class VoteDTO implements Serializable {
+
 	private int voteNo;
 	private int userNo;
 	private Date enrollDate;
