@@ -1,14 +1,52 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.classs.skhuter.view.StuScheduleFragment"
     android:background="#FFFFFF">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="학사일정" />
+        android:orientation="vertical">
+
+        <!-- 로고 -->
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/stu_schedule" />
+
+        <com.applandeo.materialcalendarview.CalendarView
+            android:id="@+id/stu_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            app:headerColor="@color/colorAccent"
+            app:selectionColor="@color/colorAccent"
+            app:todayLabelColor="@color/colorAccent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvToday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="#efefef"
+                android:gravity="top"
+                android:text="오늘"/>
+            <ListView
+                android:id="@+id/lvStuSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></ListView>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

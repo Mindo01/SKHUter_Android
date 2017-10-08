@@ -26,9 +26,15 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.1'
+    // volley : http 통신 라이브러리
     compile 'com.android.volley:volley:1.0.0'
+    // gson : json 변환 라이브러리
     compile 'com.google.code.gson:gson:2.5'
+    // glide : 이미지 로드 라이브러리
     compile 'com.github.bumptech.glide:glide:3.6.0'
     compile 'jp.wasabeef:glide-transformations:1.0.6@aar'
+    // material-calendar-view : 커스텀 달력 라이브러리
+    // + com.android.support:design:25.3.1 요구됨
+    compile 'com.applandeo:material-calendar-view:1.0.1'
     testCompile 'junit:junit:4.12'
 }
