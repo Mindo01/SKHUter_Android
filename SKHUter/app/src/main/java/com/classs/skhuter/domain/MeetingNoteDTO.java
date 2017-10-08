@@ -19,10 +19,12 @@ public class MeetingNoteDTO implements Serializable {
 	private String uuidName;
 	private String originName;
 	private Date regdate;
+
+	private String userName;
 	
 	public MeetingNoteDTO() {}
 
-	public MeetingNoteDTO(int meetingNoteNo, int userNo, String title, String fileName, String uuidName,String originName, Date regdate) {
+	public MeetingNoteDTO(int meetingNoteNo, int userNo, String title, String fileName, String uuidName,String originName, Date regdate, String userName) {
 		this.meetingNoteNo = meetingNoteNo;
 		this.userNo = userNo;
 		this.title = title;
@@ -30,6 +32,8 @@ public class MeetingNoteDTO implements Serializable {
 		this.uuidName = uuidName;
 		this.originName = originName;
 		this.regdate = regdate;
+
+		this.userName = userName;
 	}
 
 	public int getMeetingNoteNo() {
@@ -88,10 +92,18 @@ public class MeetingNoteDTO implements Serializable {
 		this.regdate = regdate;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	@Override
 	public String toString() {
 		return "MeetingNoteDTO [meetingNoteNo=" + meetingNoteNo + ", userNo=" + userNo + ", title=" + title
 				+ ", fileName=" + fileName + ", uuidName=" + uuidName + ", originName=" + originName + ", regdate="
-				+ regdate + "]";
+				+ regdate + ", userName="+userName+"]";
 	}
 }

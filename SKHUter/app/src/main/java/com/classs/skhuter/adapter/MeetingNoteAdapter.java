@@ -72,7 +72,7 @@ public class MeetingNoteAdapter extends BaseAdapter {
 
         MeetingNoteDTO meetingNote = (MeetingNoteDTO) getItem(position);
         viewHolder.tvMeetingNoteTitle.setText(meetingNote.getTitle());
-        viewHolder.tvMeetingNoteWriter.setText("작성자 : " + meetingNote.getUserNo());
+        viewHolder.tvMeetingNoteWriter.setText("작성자 : " + meetingNote.getUserName());
         Glide.with(context).load(R.drawable.download).thumbnail(0.1f).error(R.drawable.download).into(viewHolder.ivDownload);
 
         return convertView;
