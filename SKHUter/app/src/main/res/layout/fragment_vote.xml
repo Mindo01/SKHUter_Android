@@ -5,12 +5,6 @@
     tools:context="com.classs.skhuter.view.VoteFragment"
     android:background="#FFFFFF">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="투표 목록" />
-
     <ListView
         android:id="@+id/lvVoteList"
         android:layout_width="match_parent"

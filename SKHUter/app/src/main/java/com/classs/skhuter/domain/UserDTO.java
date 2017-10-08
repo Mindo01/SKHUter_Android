@@ -4,7 +4,7 @@ import java.sql.Date;
 /**
  * 유저 관련 객체 선언 및 getter(), setter() 메소드 정의
  *
- * @패키지 : com.classs.skhuter.user.domain
+ * @패키지 : com.classs.skhuter.domain
  * @파일명 : UserDTO.java
  * @작성자 : 김민주
  * @작성일 : 2017. 10. 06
