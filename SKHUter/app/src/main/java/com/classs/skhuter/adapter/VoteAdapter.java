@@ -86,12 +86,16 @@ public class VoteAdapter extends BaseAdapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        vote.setIsStart(true); // 투표예정여부 기본값 설정
         if (vote.getIsDone()) {
             // 끝난 투표
             doingDrawable = R.drawable.end_vote;
+            viewHolder.tvVoteCount.setText("투표 마감");
         } else if (startDate != null && startDate.after(new Date())) {
             // 아직 시작되지 않은 투표
+            vote.setIsStart(false);
             doingDrawable = R.drawable.none_vote;
+            viewHolder.tvVoteCount.setText("투표 예정");
         } else if (vote.getIsVote() < 1) {
             // 아직 참여하지 않은 투표
             doingDrawable = R.drawable.doing_vote;

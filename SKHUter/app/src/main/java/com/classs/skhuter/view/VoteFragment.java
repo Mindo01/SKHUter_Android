@@ -152,6 +152,35 @@ public class VoteFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             VoteDTO vote = voteDTOList.get(position);
             // 아이템 클릭 시 이벤트 작성
+            if (vote.getIsDone()) {
+                // 이미 종료된 투표
+                CustomDialog mCustomDialog = new CustomDialog(getActivity(),
+                        vote.getTitle(), // 제목
+                        vote.getContent(), // 내용
+                        CustomDialog.RESULT_DIALOG,
+                        null,
+                        null);
+                mCustomDialog.show();
+            } else if (vote.getIsStart()) {
+                // 시작 예정인 투표
+                // 진행 중인 투표
+                CustomDialog mCustomDialog = new CustomDialog(getActivity(),
+                        "투표 제한 알림", // 제목
+                        "["+vote.getTitle()+"] : 아직 시작되지 않은 투표입니다.", // 내용
+                        CustomDialog.LIMIT_DIALOG,
+                        null,
+                        null);
+                mCustomDialog.show();
+            } else {
+                    // 진행 중인 투표
+                CustomDialog mCustomDialog = new CustomDialog(getActivity(),
+                        vote.getTitle(), // 제목
+                        vote.getContent(), // 내용
+                        CustomDialog.RADIO_DIALOG,
+                        null,
+                        null);
+                    mCustomDialog.show();
+            }
 
         }
     }; // end of ItemClickListener
