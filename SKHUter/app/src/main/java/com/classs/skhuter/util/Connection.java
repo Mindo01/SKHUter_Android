@@ -29,4 +29,8 @@ public class Connection {
     public static final String GET_COUNCIL_SCHEDULE = "/council/scheduleMobile";
     // 학사 일정
     public static final String GET_STU_SCHEDULE = "/notice/stuScheduleMobile";
+
+    // 익명게시판
+    public static final String GET_VIEW_BOARD = "/board/boardListWV";
+    public static final String GET_VIEW_NOTICE = "/board/boardListWV";
 }
