@@ -16,6 +16,12 @@ public class Connection {
     // 내부 IP주소
     public static final String ADDRESS = "http://192.168.10.5";
 
+    // 회원가입
+    public static final String GET_REGIST = "/user/registerMobile";
+
+    // 로그인
+    public static final String GET_Login = "/user/loginMobile";
+
     // 학생 목록
     public static final String GET_USER_LIST = "/user/userListMobile";
     // 회의록

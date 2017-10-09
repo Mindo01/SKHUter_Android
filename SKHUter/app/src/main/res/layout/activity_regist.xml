@@ -23,7 +23,7 @@
         android:id="@+id/registID"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText7"
+        android:layout_above="@+id/edPassword"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="7dp"
         android:layout_marginEnd="26dp"
@@ -32,7 +32,7 @@
         android:inputType="numberDecimal" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/edName"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/editText6"
@@ -40,31 +40,31 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="이름을 입력하세요"
-        android:inputType="textPassword" />
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/edPhone"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_below="@+id/editText4"
+        android:layout_alignStart="@+id/edName"
+        android:layout_below="@+id/edName"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="휴대폰 번호를 입력하세요"
-        android:inputType="phone" />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/editText6"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText7"
+        android:layout_alignStart="@+id/edPassword"
         android:layout_centerVertical="true"
         android:ems="10"
         android:hint="비밀번호를 다시 입력하세요"
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/edPassword"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editText6"
@@ -87,9 +87,9 @@
         android:id="@+id/spinner_grade"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editText5"
-        android:layout_alignStart="@+id/editText5"
-        android:layout_below="@+id/editText5"
+        android:layout_alignEnd="@+id/edPhone"
+        android:layout_alignStart="@+id/edPhone"
+        android:layout_below="@+id/edPhone"
         android:layout_marginTop="10dp" />
 
     <LinearLayout
@@ -123,8 +123,8 @@
         android:layout_marginRight="30dp"
         android:text="이름"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/editText4"
-        android:layout_alignBottom="@+id/editText4"
+        android:layout_alignBaseline="@+id/edName"
+        android:layout_alignBottom="@+id/edName"
         android:layout_alignStart="@+id/textView10"
         android:layout_marginStart="7dp" />
 
@@ -175,8 +175,8 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText5"
-        android:layout_alignBottom="@+id/editText5"
+        android:layout_alignBaseline="@+id/edPhone"
+        android:layout_alignBottom="@+id/edPhone"
         android:layout_alignStart="@+id/textView10"
         android:layout_marginRight="30dp"
         android:text="휴대폰"
