@@ -41,11 +41,20 @@
                 android:background="#efefef"
                 android:gravity="top"
                 android:text="오늘"/>
-            <ListView
-                android:id="@+id/lvStuSchedule"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"></ListView>
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tvError"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"/>
+                <ListView
+                    android:id="@+id/lvStuSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </ListView>
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 
