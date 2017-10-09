@@ -85,6 +85,9 @@ public class AccountFragment extends Fragment {
      * 회계 내역 목록을 Volley로 데이터 받는 메소드
      */
     void getAccountingList() {
+        // 목록 초기화
+        accountingDTOList.clear();
+        // Volley
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Connection.ADDRESS+Connection.GET_ACCOUNTING, new Response.Listener<String>() {
             @Override

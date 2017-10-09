@@ -12,9 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.classs.skhuter.R;
+import com.classs.skhuter.util.Connection;
 
 
 public class MainActivity extends AppCompatActivity
@@ -23,6 +28,21 @@ public class MainActivity extends AppCompatActivity
     Toast t;
     private boolean notiVisiblity = false;
 
+    HomeFragment homeFragment;
+    UserListFragment userListFragment;
+    ScheduleFragment scheduleFragment;
+    MeetingNoteFragment meetingNoteFragment;
+    NoticeFragment noticeFragment;
+    StuScheduleFragment stuScheduleFragment;
+    AccountFragment accountFragment;
+    VoteFragment voteFragment;
+    BoardFragment boardFragment;
+
+    ImageView ivHome;
+    TextView tvProfile;
+
+    int beforeNav = 0;
+
     /// Fragment 변수들
     FragmentManager fm;
     @Override
@@ -30,6 +50,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("");
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,13 +63,31 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         fm = getSupportFragmentManager();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction tran = fm.beginTransaction();
-        tran.add(R.id.container, new HomeFragment());
-        tran.commit();
+
+        homeFragment = (HomeFragment) fm.findFragmentById(R.id.frag1);
+        userListFragment = new UserListFragment();
+        scheduleFragment = new ScheduleFragment();
+        meetingNoteFragment = new MeetingNoteFragment();
+        noticeFragment = new NoticeFragment();
+        stuScheduleFragment = new StuScheduleFragment();
+        accountFragment = new AccountFragment();
+        voteFragment = new VoteFragment();
+        boardFragment = new BoardFragment();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ivHome = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.ivHome);
+        tvProfile = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvProfile);
+
+        tvProfile.setText(Connection.loginUser.getName());
+        ivHome.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                moveToFragment(0);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -78,43 +118,59 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        FragmentTransaction tran = fm.beginTransaction();
-        fm.popBackStack();
-        if (id == R.id.nav_user_list) {
-            // 학생목록
-            tran.replace(R.id.container, new UserListFragment());
-        } else if (id == R.id.nav_schedule) {
-            // 학생회일정
-            tran.replace(R.id.container, new ScheduleFragment());
-        } else if (id == R.id.nav_meeting_note) {
-            // 회의록
-            tran.replace(R.id.container, new MeetingNoteFragment());
-        } else if (id == R.id.nav_notice) {
-            // 공지사항
-            tran.replace(R.id.container, new NoticeFragment());
-        } else if (id == R.id.nav_stu_schedule) {
-            // 학사일정
-            tran.replace(R.id.container, new StuScheduleFragment());
-        } else if (id == R.id.nav_account) {
-            // 회계내역
-            tran.replace(R.id.container, new AccountFragment());
-        } else if (id == R.id.nav_vote) {
-            // 투표목록
-            tran.replace(R.id.container, new VoteFragment());
-        } else if (id == R.id.nav_board) {
-            // 익명게시판
-            tran.replace(R.id.container, new BoardFragment());
-        } else if (id == R.id.nav_logout) {
-            // 로그아웃
-            // TODO 로그아웃 기능 실행
+        moveToFragment(id);
 
-        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
-        //tran.addToBackStack(null);
-        tran.commit();
         return true;
+    }
+
+    public void moveToFragment(int navId) {
+        // 처음 홈 화면 클릭 시 에러 잡음
+        if (beforeNav == navId && navId == 0) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return ;
+        }
+        FragmentTransaction tran = fm.beginTransaction();
+        //fm.popBackStack();
+        if (navId == R.id.nav_user_list) {
+            // 학생목록
+            tran.replace(R.id.container, userListFragment);
+        } else if (navId == R.id.nav_schedule) {
+            // 학생회일정
+            tran.replace(R.id.container, scheduleFragment);
+        } else if (navId == R.id.nav_meeting_note) {
+            // 회의록
+            tran.replace(R.id.container, meetingNoteFragment);
+        } else if (navId == R.id.nav_notice) {
+            // 공지사항
+            tran.replace(R.id.container, noticeFragment);
+        } else if (navId == R.id.nav_stu_schedule) {
+            // 학사일정
+            tran.replace(R.id.container, stuScheduleFragment);
+        } else if (navId == R.id.nav_account) {
+            // 회계내역
+            tran.replace(R.id.container, accountFragment);
+        } else if (navId == R.id.nav_vote) {
+            // 투표목록
+            tran.replace(R.id.container, voteFragment);
+        } else if (navId == R.id.nav_board) {
+            // 익명게시판
+            tran.replace(R.id.container, boardFragment);
+        } else if (navId == R.id.nav_logout) {
+            // 로그아웃
+            // TODO 로그아웃 기능 실행
+        } else {
+            // home
+            tran.replace(R.id.container, homeFragment);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        tran.commit();
+
+        beforeNav = navId;
     }
 
     /* 뒤로가기 시 실제 핸들링 처리 부분 */

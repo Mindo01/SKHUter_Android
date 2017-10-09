@@ -82,6 +82,9 @@ public class MeetingNoteFragment extends Fragment {
      * 회의록 목록을 Volley로 데이터 받는 메소드
      */
     void getMeetingNote() {
+        // 목록 초기화
+        meetingNoteDTOList.clear();
+        // Volley
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Connection.ADDRESS+Connection.GET_MEETING_NOTE, new Response.Listener<String>() {
             @Override

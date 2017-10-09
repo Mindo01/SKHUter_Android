@@ -163,7 +163,6 @@ public class VoteFragment extends Fragment {
      * 투표 참여를 Volley로 데이터 보내는 메소드
      */
     void sendVoteResult(VoteDTO vote) {
-        getVoteList();
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         int[] itemCounts = {vote.getItem1Count(), vote.getItem2Count(), vote.getItem3Count(), vote.getItem4Count(), vote.getItem5Count(), vote.getItem6Count()};
         itemCounts[vote.getSelectedItem()-1]++;

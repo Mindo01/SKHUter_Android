@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_header"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:background="#40596b"
@@ -13,18 +14,19 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/ivProfile"
+        android:id="@+id/ivHome"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/ic_profile" />
+        app:srcCompat="@drawable/ic_home" />
 
     <TextView
         android:id="@+id/tvProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:textSize="18sp"
         android:text="StudentNo1"
         android:layout_gravity="center_horizontal"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

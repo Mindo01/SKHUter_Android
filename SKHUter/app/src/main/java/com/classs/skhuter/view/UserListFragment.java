@@ -83,6 +83,9 @@ public class UserListFragment extends Fragment {
      * 학생 목록을 Volley로 데이터 받는 메소드
      */
     void getUserList() {
+        // 목록 초기화
+        userDTOList.clear();
+        // Volley
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Connection.ADDRESS+Connection.GET_USER_LIST, new Response.Listener<String>() {
             @Override
