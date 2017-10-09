@@ -14,7 +14,8 @@ import com.classs.skhuter.domain.UserDTO;
 public class Connection {
     public static UserDTO loginUser = new UserDTO();
     // 내부 IP주소
-    public static final String ADDRESS = "http://192.168.10.5";
+//    public static final String ADDRESS = "http://192.168.10.5"; // 영등포구청 사무실
+    public static final String ADDRESS = "http://192.168.55.149"; // 종윤 집
 
     // 회원가입
     public static final String GET_REGIST = "/user/registerMobile";
