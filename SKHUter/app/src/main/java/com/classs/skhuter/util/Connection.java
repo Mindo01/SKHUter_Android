@@ -25,4 +25,8 @@ public class Connection {
     // 투표
     public static final String GET_VOTE_LIST = "/notice/voteListMobile";
     public static final String DO_VOTE = "/notice/doVoteMobile";
+    // 학생회 일정
+    public static final String GET_COUNCIL_SCHEDULE = "/council/scheduleMobile";
+    // 학사 일정
+    public static final String GET_STU_SCHEDULE = "/notice/stuScheduleMobile";
 }

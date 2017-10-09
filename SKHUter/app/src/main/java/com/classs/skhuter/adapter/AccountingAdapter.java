@@ -1,6 +1,7 @@
 package com.classs.skhuter.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,15 +63,29 @@ public class AccountingAdapter extends BaseAdapter {
             viewHolder.tvAccountingTitle = (TextView) convertView.findViewById(R.id.tvAccountingTitle);
             viewHolder.tvAccountingDate = (TextView) convertView.findViewById(R.id.tvAccountingDate);
             viewHolder.tvMoney = (TextView) convertView.findViewById(R.id.tvMoney);
+
+            AccountingDTO accounting = (AccountingDTO) getItem(position);
+            viewHolder.tvAccountingTitle.setText(accounting.getContent());
+            viewHolder.tvAccountingDate.setText(accounting.getAccountDate());
+            viewHolder.tvMoney.setText(accounting.getPrice() +"원");
+            viewHolder.price = accounting.getPrice();
+            viewHolder.status = accounting.getStatus();
+
+            if (viewHolder.status == 0) {
+                // 수입
+                viewHolder.tvMoney.setTextColor(Color.parseColor("#3F51B5"));
+            } else {
+                // 지출
+                viewHolder.tvMoney.setTextColor(Color.parseColor("#FF0000"));
+            }
+
+            viewHolder.fileName = accounting.getFileName();
+            viewHolder.uuidName = accounting.getUuidName();
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        AccountingDTO accounting = (AccountingDTO) getItem(position);
-        viewHolder.tvAccountingTitle.setText(accounting.getContent());
-        viewHolder.tvAccountingDate.setText(accounting.getAccountDate());
-        viewHolder.tvMoney.setText(accounting.getPrice() +"원");
 
         return convertView;
     }
@@ -79,5 +94,9 @@ public class AccountingAdapter extends BaseAdapter {
         public TextView tvAccountingTitle;
         public TextView tvAccountingDate;
         public TextView tvMoney;
+        public int status;
+        public int price;
+        public String fileName;
+        public String uuidName;
     } // end of inner class ViewHolder
 } // end of class

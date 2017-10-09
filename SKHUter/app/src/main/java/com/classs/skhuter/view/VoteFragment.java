@@ -193,6 +193,7 @@ public class VoteFragment extends Fragment {
                     @Override
                     public void run() {
                         Log.d("MyLog", "error : " + err);
+                        tvError.setText("네트워크 연결이 원활하지 않습니다");
                         tvError.setVisibility(View.VISIBLE);
                     }
                 });
