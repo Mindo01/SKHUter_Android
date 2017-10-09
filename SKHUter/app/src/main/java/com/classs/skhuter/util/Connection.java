@@ -24,4 +24,5 @@ public class Connection {
     public static final String GET_ACCOUNTING = "/notice/accountingListMobile";
     // 투표
     public static final String GET_VOTE_LIST = "/notice/voteListMobile";
+    public static final String DO_VOTE = "/notice/doVoteMobile";
 }

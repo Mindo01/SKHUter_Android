@@ -74,10 +74,12 @@ public class VoteAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        SimpleDateFormat showFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         VoteDTO vote = (VoteDTO) getItem(position);
         viewHolder.tvVoteName.setText(vote.getTitle());
-        viewHolder.tvVoteDate.setText(vote.getStartDate() + " ~ " + vote.getEndDate());
+        viewHolder.tvVoteDate.setText( vote.getStartDate().substring(0, 16) + "~" + vote.getEndDate().substring(0, 16));
         viewHolder.tvVoteCount.setText(vote.getJoinCount() + "명 참여");
+
         int doingDrawable = R.drawable.none_vote;
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date startDate = null;

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -78,7 +79,12 @@ public class VoteFragment extends Fragment {
      * 투표 목록을 Volley로 데이터 받는 메소드
      */
     void getVoteList() {
+        tvError.setVisibility(View.GONE);
+        // 리스트 초기화 후 목록 받아와야 함
+        voteDTOList.clear();
+        // volley HTTP request 큐 선언
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        // 전송할 파라미터 설정
         String PARAMS = "?userNo="+Connection.loginUser.getUserNo();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Connection.ADDRESS+Connection.GET_VOTE_LIST+PARAMS, null,
                 new Response.Listener<JSONObject>() {
@@ -125,6 +131,12 @@ public class VoteFragment extends Fragment {
                 }
                 // Adapter 변경사항 갱신
                 voteAdapter.notifyDataSetChanged();
+
+                // 데이터가 없을 때
+                if (voteDTOList.size() <= 0) {
+                    tvError.setText("투표가 존재하지 않습니다");
+                    tvError.setVisibility(View.VISIBLE);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -147,42 +159,121 @@ public class VoteFragment extends Fragment {
         requestQueue.add(request);
     }
 
+    /**
+     * 투표 참여를 Volley로 데이터 보내는 메소드
+     */
+    void sendVoteResult(VoteDTO vote) {
+        getVoteList();
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        int[] itemCounts = {vote.getItem1Count(), vote.getItem2Count(), vote.getItem3Count(), vote.getItem4Count(), vote.getItem5Count(), vote.getItem6Count()};
+        itemCounts[vote.getSelectedItem()-1]++;
+        String PARAMS = "?userNo="+Connection.loginUser.getUserNo()
+                        +"&voteNo="+vote.getVoteNo()
+                        +"&item1Count="+itemCounts[0]
+                        +"&item2Count="+itemCounts[1]
+                        +"&item3Count="+itemCounts[2]
+                        +"&item4Count="+itemCounts[3]
+                        +"&item5Count="+itemCounts[4]
+                        +"&item6Count="+itemCounts[5];
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Connection.ADDRESS+Connection.DO_VOTE+PARAMS, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject obj) {
+                        Toast.makeText(getActivity().getApplicationContext(), "투표에 참여했습니다", Toast.LENGTH_SHORT).show();
+                        getVoteList();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.d("MyLog", "error : " + error);
+                final VolleyError err = error;
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("MyLog", "error : " + err);
+                        tvError.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+        });
+        requestQueue.add(request);
+    }
+
+    VoteCustomDialog resultDialog;
+    VoteCustomDialog radioDialog;
+    VoteCustomDialog limitDialog;
+
     AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            VoteDTO vote = voteDTOList.get(position);
+            final VoteDTO vote = voteDTOList.get(position);
             // 아이템 클릭 시 이벤트 작성
             if (vote.getIsDone()) {
                 // 이미 종료된 투표
-                CustomDialog mCustomDialog = new CustomDialog(getActivity(),
-                        vote.getTitle(), // 제목
-                        vote.getContent(), // 내용
-                        CustomDialog.RESULT_DIALOG,
-                        null,
-                        null);
-                mCustomDialog.show();
-            } else if (vote.getIsStart()) {
+                resultDialog = new VoteCustomDialog(getActivity(),
+                        vote,
+                        VoteCustomDialog.RESULT_DIALOG,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                resultDialog.dismiss();
+                            }
+                        }, null);
+                resultDialog.show();
+            } else if (!vote.getIsStart()) {
                 // 시작 예정인 투표
-                // 진행 중인 투표
-                CustomDialog mCustomDialog = new CustomDialog(getActivity(),
+                limitDialog = new VoteCustomDialog(getActivity(),
                         "투표 제한 알림", // 제목
                         "["+vote.getTitle()+"] : 아직 시작되지 않은 투표입니다.", // 내용
-                        CustomDialog.LIMIT_DIALOG,
-                        null,
-                        null);
-                mCustomDialog.show();
+                        VoteCustomDialog.LIMIT_DIALOG,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                limitDialog.dismiss();
+                            }
+                        }, null);
+                limitDialog.show();
+            } else if (vote.getIsVote() > 0) {
+                // 이미 참여한 투표
+                limitDialog = new VoteCustomDialog(getActivity(),
+                        "투표 제한 알림", // 제목
+                        "["+vote.getTitle()+"] : 이미 참여한 투표입니다.", // 내용
+                        VoteCustomDialog.LIMIT_DIALOG,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                limitDialog.dismiss();
+                            }
+                        }, null);
+                limitDialog.show();
             } else {
                     // 진행 중인 투표
-                CustomDialog mCustomDialog = new CustomDialog(getActivity(),
-                        vote.getTitle(), // 제목
-                        vote.getContent(), // 내용
-                        CustomDialog.RADIO_DIALOG,
-                        null,
-                        null);
-                    mCustomDialog.show();
+                    radioDialog = new VoteCustomDialog(getActivity(),
+                            vote,
+                            VoteCustomDialog.RADIO_DIALOG,
+                            new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    // 투표 등록
+                                    if (vote.getSelectedItem() <= 0) {
+                                        // 선택한 항목이 없으면
+                                        Toast.makeText(getActivity().getApplicationContext(), "선택한 항목이 없습니다", Toast.LENGTH_SHORT).show();
+                                        return ;
+                                    }
+                                    sendVoteResult(vote);
+                                    radioDialog.dismiss();
+                                }
+                            },
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    radioDialog.dismiss();
+                                }
+                            });
+                    radioDialog.show();
+                }
             }
-
-        }
     }; // end of ItemClickListener
 
 }

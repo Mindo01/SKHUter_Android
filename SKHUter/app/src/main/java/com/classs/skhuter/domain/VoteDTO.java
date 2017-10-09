@@ -40,6 +40,8 @@ public class VoteDTO implements Serializable {
 	private boolean isDone;
 	// 투표예정 구분을 위한 변수 : DTO가 아님
 	private boolean isStart;
+    // 선택한 아이템 담아주는 변수
+    private int selectedItem;
 	
 	
 	public int getJoinCount() {
@@ -176,6 +178,13 @@ public class VoteDTO implements Serializable {
 	public void setIsDone(boolean isDone) { this.isDone = isDone; }
 	public boolean getIsStart() { return isStart; }
 	public void setIsStart(boolean isStart) { this.isStart = isStart; }
+    public int getSelectedItem() {
+        return selectedItem;
+    }
+    public void setSelectedItem(int selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
 	@Override
 	public String toString() {
 		return "VoteDTO [voteNo=" + voteNo + ", userNo=" + userNo + ", enrollDate=" + enrollDate + ", startDate="

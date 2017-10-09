@@ -120,6 +120,12 @@ public class MeetingNoteFragment extends Fragment {
                     // Adapter 변경사항 갱신
                     meetingNoteAdapter.notifyDataSetChanged();
                 }
+
+                // 데이터가 없을 때
+                if (list.size() <= 0) {
+                    tvError.setText("회의록이 존재하지 않습니다");
+                    tvError.setVisibility(View.VISIBLE);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
