@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.classs.skhuter.R;
 
@@ -19,6 +20,8 @@ import com.classs.skhuter.R;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    Button goNoticeBtn, goVoteBtn, goBoardBtn;
 
     public HomeFragment() {
         // Required empty public constructor
