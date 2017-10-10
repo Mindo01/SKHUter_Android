@@ -14,14 +14,17 @@ import com.classs.skhuter.domain.UserDTO;
 public class Connection {
     public static UserDTO loginUser = new UserDTO();
     // 내부 IP주소
+    public static final String ADDRESS = "http://192.168.10.2"; // 영등포구청 사무실
 //    public static final String ADDRESS = "http://192.168.10.5"; // 영등포구청 사무실
 //    public static final String ADDRESS = "http://192.168.55.149"; // 종윤 집
-    public static final String ADDRESS = "http://172.30.2.104"; // 학교
+//    public static final String ADDRESS = "http://172.30.2.104"; // 학교
 
     // 이미지 업로드 경로 : 회계내역
     public static final String IMG_UPLOAD = "/resources/upload/skhuter/";
     // 파일 업로드 경로 : 회의록
-    public static final String FILE_UPLOAD = "/resources/upload/";
+    public static final String FILE_UPLOAD = "/resources/upload/skhuter/";
+    // 파일 다운로드 경로 : 회의록 - 앱 externalStorageDirectory 하위 폴더
+    public static final String FILE_DOWNLOAD = "skhuter";
 
     // 회원가입
     public static final String GET_REGIST = "/user/registerMobile";

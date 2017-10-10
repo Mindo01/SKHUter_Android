@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity
 
     int beforeNav = 0;
 
+    public static MainActivity activity;
+
     /// Fragment 변수들
     FragmentManager fm;
     @Override
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         setTitle("");
 
-
+        activity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

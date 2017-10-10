@@ -36,9 +36,19 @@ public class NoticeFragment extends Fragment {
         wvNotice.getSettings().setLoadWithOverviewMode(true); // 웹뷰에서 페이지가 확대되는 문제해결
         wvNotice.getSettings().setUseWideViewPort(true);
         wvNotice.setInitialScale(1); // 기기별 화면사이트에 맞게 조절
-        wvNotice.setWebViewClient(new WebViewClientHandler());
+        // 화면 zoom 허용
+        wvNotice.getSettings().setBuiltInZoomControls(true);
+        wvNotice.getSettings().setDisplayZoomControls(false);
+
         wvNotice.getSettings().setJavaScriptEnabled(true);
-        wvNotice.loadUrl(Connection.ADDRESS+Connection.GET_VIEW_NOTICE);
+
+        wvNotice.setWebViewClient(new WebViewClientHandler());
+
+        // userNo와 status(학생등급)를 파라미터로 전송함
+        String PARAMS = "?userNo="+Connection.loginUser.getUserNo()
+                        +"&status="+Connection.loginUser.getStatus();
+
+        wvNotice.loadUrl(Connection.ADDRESS+Connection.GET_VIEW_NOTICE+PARAMS);
 
         // Inflate the layout for this fragment
         return v;

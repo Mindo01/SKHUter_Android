@@ -23,6 +23,7 @@ import com.classs.skhuter.adapter.MeetingNoteAdapter;
 import com.classs.skhuter.domain.MeetingNoteDTO;
 import com.classs.skhuter.domain.UserDTO;
 import com.classs.skhuter.util.Connection;
+import com.classs.skhuter.util.MyFile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -47,6 +48,9 @@ public class MeetingNoteFragment extends Fragment {
     TextView tvError;
     MeetingNoteAdapter meetingNoteAdapter;
     Handler handler = new Handler();
+
+    DownloadCustomDialog downloadDialog;
+
     public MeetingNoteFragment() {
         // Required empty public constructor
     }
@@ -162,9 +166,13 @@ public class MeetingNoteFragment extends Fragment {
     AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            MeetingNoteDTO nBean = meetingNoteDTOList.get(position);
+            MeetingNoteDTO meetingNoteDTO = meetingNoteDTOList.get(position);
+            MyFile myFile = new MyFile();
+            myFile.setFileName(meetingNoteDTO.getOriginName());
+            myFile.setFilePath(meetingNoteDTO.getUuidName().substring(9));
             // 아이템 클릭 시 이벤트 작성
-
+            downloadDialog = new DownloadCustomDialog(getActivity(), myFile, DownloadCustomDialog.DOWNLOAD_DIALOG, null, null);
+            downloadDialog.show();
         }
     }; // end of ItemClickListener
 
