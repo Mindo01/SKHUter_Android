@@ -78,4 +78,21 @@ public class MyEventDay extends EventDay implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof MyEventDay) {
+            MyEventDay myObj = (MyEventDay)obj;
+            if (myObj == null)
+                return false;
+            else {
+                // this와 myObj의 long값(timeInMillis)이 같으면 같은 객체로 취급한다
+                if (myObj.getCalendar().getTime().getTime() == this.getCalendar().getTime().getTime())
+                {
+                    return true;
+                }
+            }
+        }
+        return super.equals(obj);
+    }
 }

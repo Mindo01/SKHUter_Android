@@ -77,25 +77,75 @@ public class ScheduleFragment extends Fragment {
         // 일정 목록 받아오기
         getSchedule();
 
-        Calendar cal = Calendar.getInstance();
-        Log.e("DateHere", cal.get(Calendar.YEAR)+"-"+(cal.get(Calendar.MONTH)+1)+"-"+cal.get(Calendar.DATE));
+
+
         // 이벤트 목록에 추가
         //////////////////////////////// 더미데이터
-        /*MyEventDay eventDay = new MyEventDay(cal, R.drawable.ic_meeting_note, "하하하");
-        MyEventDay eventDay2 = new MyEventDay(cal, R.drawable.ic_logout, "호호호");
-        CouncilScheduleDTO councilScheduleDTO = new CouncilScheduleDTO();
-        councilScheduleDTO.setContent("첫 번째 일정");
-        councilScheduleDTO.setStartDate("2017-10-09 18:00:00");
-        councilScheduleDTO.setEndDate("2017-10-10 19:00:00");
-        eventDay.addSchedule(councilScheduleDTO);
-        councilScheduleDTO = new CouncilScheduleDTO();
-        councilScheduleDTO.setContent("두 번째 일정");
-        councilScheduleDTO.setStartDate("2017-10-09 17:00:00");
-        councilScheduleDTO.setEndDate("2017-10-10 11:00:00");
-        eventDay.addSchedule(councilScheduleDTO);
-        mEventDays.add(eventDay);
-        eventDay.addSchedule(councilScheduleDTO);
-        mEventDays.add(eventDay);*/
+        /*Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        Calendar cal3 = Calendar.getInstance();
+        Calendar cal22 = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1, date2, date3;
+        try {
+            date1 = format.parse("2017-10-08 17:00:00");
+            date2 = format.parse("2017-10-09 16:30:00");
+            date3 = format.parse("2017-10-10 13:00:00");
+
+            cal1.setTime(date1);
+            cal2.setTime(date2);
+            cal3.setTime(date3);
+            cal22.setTime(date2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        MyEventDay eventDay1 = new MyEventDay(cal1, R.drawable.ic_meeting_note, "2017-10-08");
+        MyEventDay eventDay11 = new MyEventDay(cal1, R.drawable.ic_meeting_note, "2017-10-08 2");
+        MyEventDay eventDay2 = new MyEventDay(cal2, R.drawable.ic_logout, "2017-10-09");
+        MyEventDay eventDay3 = new MyEventDay(cal3, R.drawable.ic_logout, "2017-10-10");
+        CouncilScheduleDTO councilScheduleDTO1 = new CouncilScheduleDTO();
+        councilScheduleDTO1.setCouncilScheduleNo(1);
+        councilScheduleDTO1.setContent("첫 번째 일정");
+        councilScheduleDTO1.setStartDate("2017-10-09 18:00:00");
+        councilScheduleDTO1.setEndDate("2017-10-10 19:00:00");
+        eventDay2.addSchedule(councilScheduleDTO1);
+        eventDay3.addSchedule(councilScheduleDTO1);
+        CouncilScheduleDTO councilScheduleDTO2 = new CouncilScheduleDTO();
+        councilScheduleDTO2.setCouncilScheduleNo(2);
+        councilScheduleDTO2.setContent("두 번째 일정");
+        councilScheduleDTO2.setStartDate("2017-10-09 17:00:00");
+        councilScheduleDTO2.setEndDate("2017-10-10 11:00:00");
+        eventDay3.addSchedule(councilScheduleDTO2);
+        CouncilScheduleDTO councilScheduleDTO3 = new CouncilScheduleDTO();
+        councilScheduleDTO3.setCouncilScheduleNo(3);
+        councilScheduleDTO3.setContent("세 번째 일정");
+        councilScheduleDTO3.setStartDate("2017-10-09 17:00:00");
+        councilScheduleDTO3.setEndDate("2017-10-09 19:00:00");
+        eventDay2.addSchedule(councilScheduleDTO3);
+        CouncilScheduleDTO councilScheduleDTO4 = new CouncilScheduleDTO();
+        councilScheduleDTO4.setCouncilScheduleNo(3);
+        councilScheduleDTO4.setContent("네 번째 일정");
+        councilScheduleDTO4.setStartDate("2017-10-08 10:00:00");
+        councilScheduleDTO4.setEndDate("2017-10-08 20:00:00");
+        eventDay1.addSchedule(councilScheduleDTO4);
+        CouncilScheduleDTO councilScheduleDTO5 = new CouncilScheduleDTO();
+        councilScheduleDTO5.setCouncilScheduleNo(3);
+        councilScheduleDTO5.setContent("다섯 번째 일정");
+        councilScheduleDTO5.setStartDate("2017-10-08 10:00:00");
+        councilScheduleDTO5.setEndDate("2017-10-08 20:00:00");
+        eventDay11.addSchedule(councilScheduleDTO5);
+        mEventDays.add(eventDay1);
+        mEventDays.add(eventDay2);
+        mEventDays.add(eventDay3);
+        mEventDays.add(eventDay11);
+
+        // eventDay를 받아서 사용해보자
+        Log.e("10월9일 EventDay 있습니까?", mEventDays.indexOf(new MyEventDay(cal22, R.drawable.ic_logout, "2017-10-09 2"))+"에 있습니다");
+        MyEventDay getEventDay = (MyEventDay)mEventDays.get(mEventDays.indexOf(new MyEventDay(cal22, R.drawable.ic_logout, "")));
+        getEventDay.addSchedule(councilScheduleDTO2);
+        mEventDays.add(getEventDay);
+
+        mCalendarView.setEvents(mEventDays); // 헤헤*/
         //////////////////////////////// 더미데이터
 
         scheduleAdapter = new ScheduleAdapter(getActivity().getApplicationContext(),
@@ -107,7 +157,8 @@ public class ScheduleFragment extends Fragment {
         mCalendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
-                Log.e("onDay", "날짜 누름");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Log.e("onDay", "날짜 누름 "+format.format(eventDay.getCalendar().getTime()));
                 // 리스트 초기화
                 councilScheduleDTOList.clear();
                 // 선택된 날짜 받아오기
@@ -129,7 +180,7 @@ public class ScheduleFragment extends Fragment {
                     // 해당 날짜의 일정들 불러와 리스트뷰에 추가
                     for (int i = 0; i < myEventDay.getSize(); i++) {
                         councilScheduleDTOList.add(myEventDay.get(i));
-                        Log.e("일정 추가 "+i+"번째", myEventDay.get(i).getContent());
+                        Log.e("일정 추가 "+i+"번째", myEventDay.get(i).getContent()+"//cal="+myEventDay.getCalendar().toString());
                     }
                 }
                 scheduleAdapter.notifyDataSetChanged();
@@ -189,6 +240,7 @@ public class ScheduleFragment extends Fragment {
                         try {
                             startDate = format.parse(tmpScheduleDTO.getStartDate());
                             endDate = format.parse(tmpScheduleDTO.getEndDate());
+                            Log.e("START DATE "+tmpScheduleDTO.getStartDate(), tmpScheduleDTO.getContent()+":"+startDate.getTime());
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -197,12 +249,29 @@ public class ScheduleFragment extends Fragment {
                         startCal.setTime(startDate);
                         endCal.setTime(endDate);
                         Log.e("DAYS", format.format(startCal.getTime())+"~"+format.format(endCal.getTime()));
-                        while(startCal.compareTo(endCal) <= 0) {
-                            MyEventDay tmpEd = new MyEventDay(startCal, R.drawable.ic_meeting_note, format.format(startCal.getTime())+tmpScheduleDTO.getCouncilScheduleNo());
+                        /// 중요! Calendar 객체를 바꾸면 그 객체에 레퍼런스를 둔 값들이 전부 바뀐다
+                        for (int j = 0; true; j++) {
+                            Calendar putCal = Calendar.getInstance();
+                            putCal.setTime(startDate);
+                            putCal.add(Calendar.DATE, j);
+                            // 일정 추가하려는 일자가 종료일자보다 이후 날짜일 경우 작업 그만
+                            if (putCal.compareTo(endCal) > 0) {
+                                break;
+                            }
+                            // 이미 존재하는 EventDay인지 EventDay List에서 index 검색
+                            // - MyEventDay에서 Equals를 override해서, 날짜(yyyy-MM-dd)가 동일하면 같은 객체로 판단하게 구현함
+                            int hasEventDay = mEventDays.indexOf(new MyEventDay(putCal, R.drawable.ic_meeting_note, ""));
+                            MyEventDay tmpEd;
+                            if (hasEventDay >= 0) {
+                                // 이미 존재하는 EventDay일 경우 받아서 사용
+                                tmpEd = (MyEventDay)mEventDays.get(hasEventDay);
+                            } else {
+                                // 존재하지 않는 EventDay일 경우 생성해서 일정 넣어주기
+                                tmpEd = new MyEventDay(putCal, R.drawable.ic_meeting_note, format.format(putCal.getTime()) + tmpScheduleDTO.getCouncilScheduleNo());
+                            }
                             tmpEd.addSchedule(tmpScheduleDTO);
-                            Log.e("ADDING SCHEDULE", format.format(startCal.getTime())+"에 "+tmpScheduleDTO.getContent());
+                            Log.e("ADDING SCHEDULE", format.format(putCal.getTime())+"에 "+tmpScheduleDTO.getContent() + "//putCal="+putCal.toString());
                             mEventDays.add(tmpEd);
-                            startCal.add(Calendar.DATE, 1);
                         }
                     }
 

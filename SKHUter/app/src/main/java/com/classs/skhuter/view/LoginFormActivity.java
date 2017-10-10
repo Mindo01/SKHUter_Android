@@ -3,6 +3,7 @@ package com.classs.skhuter.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,8 @@ public class LoginFormActivity extends Activity {
     EditText edtID, edtPW;
     Button btnLogin;
     TextView textRegist, textFindPW;
+
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,14 +146,13 @@ public class LoginFormActivity extends Activity {
                 Log.d("MyLog", "error : " + error);
                 final VolleyError err = error;
 
-/*                handler.post(new Runnable() {
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
                         Log.d("MyLog", "error : " + err);
-                        tvError.setText("네트워크 연결이 원활하지 않습니다");
-                        tvError.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplicationContext(), "네트워크 연결이 원활하지 않습니다", Toast.LENGTH_SHORT).show();
                     }
-                });*/
+                });
             }
         });
         requestQueue.add(request);
