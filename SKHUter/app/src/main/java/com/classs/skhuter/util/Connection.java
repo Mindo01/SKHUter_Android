@@ -18,6 +18,11 @@ public class Connection {
 //    public static final String ADDRESS = "http://192.168.55.149"; // 종윤 집
     public static final String ADDRESS = "http://172.30.2.104"; // 학교
 
+    // 이미지 업로드 경로 : 회계내역
+    public static final String IMG_UPLOAD = "/resources/upload/skhuter/";
+    // 파일 업로드 경로 : 회의록
+    public static final String FILE_UPLOAD = "/resources/upload/";
+
     // 회원가입
     public static final String GET_REGIST = "/user/registerMobile";
 

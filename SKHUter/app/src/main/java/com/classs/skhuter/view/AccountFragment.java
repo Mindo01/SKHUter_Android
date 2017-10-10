@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -49,6 +50,9 @@ public class AccountFragment extends Fragment {
     TextView tvIncome, tvExpenditure, tvRestMoney;
     TextView tvError;
     Handler handler = new Handler();
+
+    AccountCustomDialog imgDialog;
+
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -177,9 +181,25 @@ public class AccountFragment extends Fragment {
     AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            AccountingDTO nBean = accountingDTOList.get(position);
+            AccountingDTO accountingDTO = accountingDTOList.get(position);
             // 아이템 클릭 시 이벤트 작성
-
+            // 보여줄 이미지가 등록되어 있다면 이미지 다이얼로그 띄우기
+            if (accountingDTO.getUuidName() != null && !"".equals(accountingDTO.getUuidName())) {
+                // 이미지 파일이 존재함
+                imgDialog = new AccountCustomDialog(getActivity(),
+                        accountingDTO,
+                        AccountCustomDialog.IMG_DIALOG,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                imgDialog.dismiss();
+                            }
+                        });
+                imgDialog.show();
+            } else {
+                // 이미지 파일이 없음
+                Toast.makeText(getActivity().getApplicationContext(), "해당 내역에 대한 이미지가 존재하지 않습니다", Toast.LENGTH_SHORT).show();
+            }
         }
     }; // end of ItemClickListener
 }
