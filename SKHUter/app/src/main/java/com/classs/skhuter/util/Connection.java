@@ -49,4 +49,13 @@ public class Connection {
     // 익명게시판
     public static final String GET_VIEW_BOARD = "/board/boardListWV";
     public static final String GET_VIEW_NOTICE = "/notice/noticeListM";
+
+
+    // SHARED PREFERENCE 설정값들
+    public static final String SH_UNAME = "LoginSettings.dat";
+
+    public static final String SH_LOGIN_ID = "LoginId";
+    public static final String SH_LOGIN_PW = "LoginPassword";
+    public static final String SH_LOGIN_NAME = "LoginName";
+    public static final String SH_AUTO_LOGIN = "AutoLogin";
 }

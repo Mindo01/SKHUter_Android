@@ -36,7 +36,5 @@ dependencies {
     // material-calendar-view : 커스텀 달력 라이브러리
     // + com.android.support:design:25.3.1 요구됨
     compile 'com.applandeo:material-calendar-view:1.0.1'
-    // netroid : volley 기반 http 라이브러리 : 파일 다운로드에 사용하기 위함
-    compile 'com.duowan.android.netroid:netroid:1.2.1'
     testCompile 'junit:junit:4.12'
 }

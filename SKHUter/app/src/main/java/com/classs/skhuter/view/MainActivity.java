@@ -1,5 +1,7 @@
 package com.classs.skhuter.view;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -26,7 +28,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Handler handler = new Handler();
     Toast t;
-    private boolean notiVisiblity = false;
 
     HomeFragment homeFragment;
     UserListFragment userListFragment;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity
     ImageView ivHome;
     TextView tvProfile;
 
+    private SharedPreferences sharedPreferences;
+
     int beforeNav = 0;
 
     public static MainActivity activity;
@@ -54,6 +57,9 @@ public class MainActivity extends AppCompatActivity
         setTitle("");
 
         activity = this;
+
+        // SharedPreferences 초기화
+        sharedPreferences = getSharedPreferences(Connection.SH_UNAME, MODE_PRIVATE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,6 +85,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // 회장단이 아닐 경우 학생 목록 숨기기
+        if (Connection.loginUser == null || Connection.loginUser.getStatus() < 3) {
+            hideMenuItem();
+        }
+
         ivHome = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.ivHome);
         tvProfile = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvProfile);
 
@@ -90,6 +101,13 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
+    }
+
+    // 회장단/학생 여부에 따라 메뉴 숨기기
+    void hideMenuItem() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_user_list).setVisible(false);
     }
 
     @Override
@@ -163,7 +181,16 @@ public class MainActivity extends AppCompatActivity
             tran.replace(R.id.container, boardFragment);
         } else if (navId == R.id.nav_logout) {
             // 로그아웃
-            // TODO 로그아웃 기능 실행
+            // 로그아웃 기능 실행
+            Connection.loginUser = null;
+            // 자동 로그인 여부 해제
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(Connection.SH_AUTO_LOGIN, false);
+            editor.commit();    // 커밋 꼭 해야 적용됨 ㅎㅎ
+            Toast.makeText(getApplicationContext(), "로그아웃되었습니다", Toast.LENGTH_SHORT);
+            Intent intent = new Intent(MainActivity.this, LoginFormActivity.class);
+            startActivity(intent);
+            finish();
         } else {
             // home
             tran.replace(R.id.container, homeFragment);
@@ -191,7 +218,7 @@ public class MainActivity extends AppCompatActivity
                 public void run() {
                     count = 0;
                 }
-            }, 2000);
+            }, 3000);
         }
     };
 
@@ -205,11 +232,6 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.END);
         } else {
             handler.post(backKeyRun);
-            if (!notiVisiblity) {
-                handler.post(backKeyRun);
-            } else {
-                //toggleFragment();
-            }
         }
     } // end of onBackPressed
 

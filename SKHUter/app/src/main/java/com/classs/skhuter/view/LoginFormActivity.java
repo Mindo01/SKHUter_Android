@@ -2,11 +2,13 @@ package com.classs.skhuter.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,12 @@ public class LoginFormActivity extends Activity {
     EditText edtID, edtPW;
     Button btnLogin;
     TextView textRegist, textFindPW;
+    CheckBox chkIsAutoLogin;
 
     Handler handler = new Handler();
+
+    // 자동로그인 저장
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,12 @@ public class LoginFormActivity extends Activity {
 
         Connection.loginUser = null;
 
+        // SharedPreferences 초기화
+        sharedPreferences = getSharedPreferences(Connection.SH_UNAME, MODE_PRIVATE);
+
         edtID = (EditText)findViewById(R.id.edtID);
         edtPW = (EditText)findViewById(R.id.edtPW);
+        chkIsAutoLogin = (CheckBox)findViewById(R.id.chkIsAutoLogin);
         btnLogin = (Button)findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +100,7 @@ public class LoginFormActivity extends Activity {
     }
 
     /**
-     * 회원가입을 Volley로 데이터 보내는 메소드
+     * 로그인값을 Volley로 데이터 보내는 메소드
      */
     void sendLoginResult(UserDTO user) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -132,6 +142,19 @@ public class LoginFormActivity extends Activity {
                                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                     // 로그인 정보 저장
                                     Log.e("Login USER", Connection.loginUser.getName() + ", " + Connection.loginUser.getUserNo() + ", " + Connection.loginUser.getId());
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    // 자동로그인 여부
+                                    if (chkIsAutoLogin.isChecked()) {
+                                        // 자동로그인 여부 저장
+                                        editor.putString(Connection.SH_LOGIN_ID, Connection.loginUser.getId());
+                                        editor.putString(Connection.SH_LOGIN_PW, edtPW.getText().toString());
+                                        editor.putBoolean(Connection.SH_AUTO_LOGIN, true);
+                                    } else {
+                                        editor.putBoolean(Connection.SH_AUTO_LOGIN, false);
+                                    }
+                                    editor.commit(); // 변경사항을 저장하기
+
                                     // 홈 화면으로 이동
                                     Intent intent = new Intent(LoginFormActivity.this, MainActivity.class);
                                     startActivity(intent);
