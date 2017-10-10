@@ -15,7 +15,8 @@ public class Connection {
     public static UserDTO loginUser = new UserDTO();
     // 내부 IP주소
 //    public static final String ADDRESS = "http://192.168.10.5"; // 영등포구청 사무실
-    public static final String ADDRESS = "http://192.168.55.149"; // 종윤 집
+//    public static final String ADDRESS = "http://192.168.55.149"; // 종윤 집
+    public static final String ADDRESS = "http://172.30.2.104"; // 학교
 
     // 회원가입
     public static final String GET_REGIST = "/user/registerMobile";
@@ -39,5 +40,5 @@ public class Connection {
 
     // 익명게시판
     public static final String GET_VIEW_BOARD = "/board/boardListWV";
-    public static final String GET_VIEW_NOTICE = "/board/boardListWV";
+    public static final String GET_VIEW_NOTICE = "/notice/noticeListM";
 }
