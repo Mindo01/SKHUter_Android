@@ -87,7 +87,8 @@
         android:id="@+id/textView5"
         android:layout_alignBaseline="@+id/textRegist"
         android:layout_alignBottom="@+id/textRegist"
-        android:layout_toStartOf="@+id/chkIsAutoLogin" />
+        android:layout_toStartOf="@+id/chkIsAutoLogin"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/textFindPW"
@@ -99,7 +100,8 @@
         android:textIsSelectable="true"
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
-        android:layout_alignEnd="@+id/btnLogin" />
+        android:layout_alignEnd="@+id/btnLogin"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/textRegist"
@@ -111,6 +113,7 @@
         android:textColor="#3587a0"
         android:textIsSelectable="true"
         android:layout_below="@+id/btnLogin"
-        android:layout_alignStart="@+id/btnLogin" />
+        android:layout_alignStart="@+id/btnLogin"
+        android:visibility="gone"/>
 
 </RelativeLayout>

@@ -37,9 +37,20 @@ public class BoardFragment extends Fragment {
         wvBoard.getSettings().setLoadWithOverviewMode(true); // 웹뷰에서 페이지가 확대되는 문제해결
         wvBoard.getSettings().setUseWideViewPort(true);
         wvBoard.setInitialScale(1); // 기기별 화면사이트에 맞게 조절
+
+        // 화면 zoom 허용
+        wvBoard.getSettings().setBuiltInZoomControls(true);
+        wvBoard.getSettings().setDisplayZoomControls(false);
+
         wvBoard.setWebViewClient(new WebViewClientHandler());
+
+        // userNo와 status(학생등급)를 파라미터로 전송함
+        String PARAMS = "?userNo="+Connection.loginUser.getUserNo()
+                +"&status="+Connection.loginUser.getStatus();
+
+        wvBoard.loadUrl(Connection.ADDRESS+Connection.GET_VIEW_BOARD+PARAMS);
+
         wvBoard.getSettings().setJavaScriptEnabled(true);
-        wvBoard.loadUrl(Connection.ADDRESS+Connection.GET_VIEW_BOARD);
 
         // Inflate the layout for this fragment
         return v;
